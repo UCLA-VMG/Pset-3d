@@ -59,7 +59,7 @@ Finally, install other dependencies with
 
 
 ## Demo
-You can run a simple demo to see if the environment setup is successful. This part directly follows [demo](https://github.com/autonomousvision/convolutional_occupancy_networks/blob/master/README.md#demo) in the original github page for Convolutional Occupancy Networks. You can simply run the demo to reconstruct a synthetic indoor scene.
+You can run a simple demo to see if the environment is successfully set up. This part directly follows [demo](https://github.com/autonomousvision/convolutional_occupancy_networks/blob/master/README.md#demo) in the original github page for Convolutional Occupancy Networks. You can simply run the demo to reconstruct a synthetic indoor scene.
 
 First, run the script to get the demo data:
 ```
