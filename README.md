@@ -71,9 +71,7 @@ python generate.py configs/pointcloud/demo_syn_room.yaml
 ```
 The generated mesh data can be found in `out/demo_syn_room`. The mesh file `.off` can be simply visualized using [MeshLab](https://www.meshlab.net/).
 
-<div style="text-align: center">
-<img src="media/demo_syn_room.gif" width="600"/>
-</div>
+![demo_visualization](demo_visual/demo_visualization.png)
 
 
 
