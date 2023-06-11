@@ -27,7 +27,7 @@ The following can be run to install several useful packages
 !pip install numpy cython pandas plyfile scikit-image
 ```
 
-#### Compile the extension models
+#### Compile the extension modules
 Next, we can compile the extension models via
 ```
 python setup.py build_ext --inplace
