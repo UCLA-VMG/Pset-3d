@@ -74,11 +74,52 @@ The generated mesh data can be found in `out/demo_syn_room`. The mesh file `.off
 ![demo_visualization](demo_visual/demo_visualization.png)
 
 
+## Data Preparation
+In this project, we are going to use the data of Stanford Bunny, which can be downloaded from [`bunny_data`](https://github.com/UCLA-VMG/Pset-3d/tree/main/bunny_data). Data preparation follows the [Occupancy Networks] (https://github.com/autonomousvision/occupancy_networks#preprocessed-data). After git clone the project of Occupancy Networks, enter the project directory and run the following to sample the data:
+```
+!mkdir -p prepared_data/bunny/pointcloud \
+      prepared_data/bunny/points \
+      prepared_data/bunny/mesh
+
+%cd scripts/
+
+# sample the mesh to obtain pointcloud
+!python sample_mesh.py ../bunny_data/mesh \
+      --pointcloud_folder ../prepared_data/bunny/pointcloud \
+      --points_folder ../prepared_data/bunny/points \
+      --mesh_folder ../prepared_data/bunny/mesh \
+      --packbits --float16 \
+```
+This will create the dataset sampled on mesh of Stanford Bunny in 'prepared_data': the output (scaled) mesh, query points and output pointcloud data. You may want to use more input argument options (`--points_uniform_ratio`, `--points_sigma`) to apply different sampling strategy. Later you may need to consider adjust these to achieve better performance.
+Since we only use one object, i.e. a single Stanford Bunny, for training and testing, the splitt files for train/val/test data would be the same and can be created either by modifying ['scripts/create_split.py'](https://github.com/autonomousvision/occupancy_networks/blob/master/scripts/create_split.py) or using the following:
+```
+# prepare overfit dataset, i.e. one object for train, val and test
+import os
+import random
 
 
+in_folder = "../prepared_data"
+
+all_samples = [name for name in os.listdir(in_folder)
+               if os.path.isdir(os.path.join(in_folder, name))]
 
 
+train_set = val_set = test_set = all_samples[:3]
 
+with open(os.path.join(in_folder, 'train.lst'), 'w') as f:
+    f.write('\n'.join(train_set))
+
+with open(os.path.join(in_folder, 'val.lst'), 'w') as f:
+    f.write('\n'.join(val_set))
+
+with open(os.path.join(in_folder, 'test.lst'), 'w') as f:
+    f.write('\n'.join(test_set))
+```
+Now you should have all the split files end with `.lst` inside the `prepared_data` folder, which is ready for training and testing.
+
+## Training
+
+## Test and Evaluation
 
 
 
